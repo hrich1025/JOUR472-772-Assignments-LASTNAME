@@ -39,26 +39,62 @@ umd_courses <- read_rds("lab_01.rds")
 
 ## Answer questions
 
-**Q1** Which department has the highest mean (average) number of seats for its classes? You need to show the department with the highest average first. Which one is the most surprising/interesting to you? **A1**
+**Q1** Which department has the highest mean (average) number of seats for its classes? You need to show the department with the highest average first. Which one is the most surprising/interesting to you? **A1** Computer, Math, and Natural Sciences. Most surprising would be Biophysics only having 4.94 — would've expected a higher mean.
 
 ```{r}
+umd_courses |>
+  group_by(department) |>
+  summarise(
+    count_classes = n(),
+    total_seats = sum(seats),
+    mean_seats = mean(seats),
+    median_seats = median(seats),
+    # add minimum seats here
+    # add maximum seats here
+  ) |>
+  arrange(desc(mean_seats))
 ```
 
 **Q2** Find out the greatest number of times any individual class has been offered in our dataset. Your code must show the greatest number of classes first.
-**A2**
+**A2** CMSC798
 
 ```{r}
+umd_courses |>
+  group_by(id) |>
+  summarise(
+    count_classes = n(),
+    max_sections = max(sections)
+  ) |>
+  arrange(desc(max_sections))
 ```
 
 **Q3** Count the number of courses for each instructor and department. Which instructor has taught the most?
-**A3**
+**A3** Monique Koppel
 
 ```{r}
+umd_courses |>
+  group_by(department, instructors) |>
+  summarise(
+    count_classes = n(),
+    total_sections = sum(sections)
+  ) |>
+  arrange(desc(total_sections))
 ```
 
-**Q4** Given the results for Q3, what would have made it easier to find the answer? You don't have to know *how* to accomplish this; I want you to describe in words what would make the answer easier to see. How confident are you that the answer you got is the right one, and why? **A4**
+**Q4** Given the results for Q3, what would have made it easier to find the answer? You don't have to know *how* to accomplish this; I want you to describe in words what would make the answer easier to see. How confident are you that the answer you got is the right one, and why? 
+**A4** I would have liked to sort by individual instructors -- for some reason a lot of the rows listed a bunch of instructors together, which was confusing me. I'm not totally confident I got the right answer because I'm not sure if total sections is the right way to go here.
 
-**Q5** Take one of the questions you listed in the final question of the pre_lab and try to answer it here in code. If you don't know how to fully answer it, write what code you can and describe in words what else you would need to do. If you got an answer, is it interesting? **A5**
+**Q5** Take one of the questions you listed in the final question of the pre_lab and try to answer it here in code. If you don't know how to fully answer it, write what code you can and describe in words what else you would need to do. If you got an answer, is it interesting? 
+**A5** Which department has seen the biggest shift in mean seats per term over a one year span? 
+In addition to the code I ran, I think I would have to sort by department so I could see how each department's mean seats changed across terms. Right now all the departments are jumbled, and I would have to go through every row to find each department's listings.
+
 
 ```{r}
+umd_courses |>
+  group_by(term, department) |>
+  summarise(
+    count_classes = n(),
+    mean_seats = mean(seats),
+  ) |>
+  arrange(desc(mean_seats))
 ```
