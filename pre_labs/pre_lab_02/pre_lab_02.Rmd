@@ -110,7 +110,7 @@ That gives us 308 records But that's repetitive, no? We can do better using a si
 **Task** Run the following code
 
 ```{r}
-and_theatre_seats_15 <- umd_courses |> filter(department == "Theatre" & seats >= 15)
+and_theatre_seats_1 <- umd_courses |> filter(department == "Theatre" & seats >= 15)
 
 nrow(and_theatre_seats_15)
 ```
