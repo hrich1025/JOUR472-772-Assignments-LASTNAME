@@ -82,12 +82,12 @@ Q4: You want to understand how much state grant money went to stem cell research
 A4:Stem cell research funding peaked in 2009, when there was about \$14.6 million in funding. That number was nearly slashed in half the following year, when in 2010 it was about \$7.87 million. The number stayed in that general range, dipping to as little as \$4.8 million in 2021 and as much as \$9.2 million in 2012, before rising again to about \$12.4 million in 2023.
 
 ```{r}
-stem_cell <- md_grants_loans |>
-  filter(str_detect(description, "STEM CELL|Stem Cell")) |>
+md_grants_loans |>
+  mutate(description = str_to_upper(description)) |>
+  filter(str_detect(description,"STEM CELL RESEARCH GRANT")) |>
    group_by(fiscal_year) |>
-   summarize(total_amount = sum(amount))
+   summarize(total = sum(amount))
  
-stem_cell
 ```
 
 Q5: Using the Maryland grants and loan data, find records where the zip code is the one where the University of Maryland-College Park is located in and produce a list of grantees from that zip code, along with the total amount they received. Write a paragraph explaining how many grantees are there, what you would need to do to clean the results so that you had one record per grantee and which grantees are most interesting to you?
