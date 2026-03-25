@@ -25,7 +25,9 @@ In this notebook, we are reverse engineering the story, [STORY NAME](STORY%20URL
 Loading required libraries for this analysis.
 
 ```{r echo=FALSE, message=FALSE}
-
+library(lubridate)
+library(janitor)
+library(tidyverse)
 ```
 
 ## Load and Cleaning Data
@@ -51,25 +53,22 @@ In this notebook, we are reverse engineering five sentences from the story.
 ### Sentence 1
 
 -   **Sentence text**: [Sports owners' contributions to federal elections since 2015: \$47 million (\$10m to republicans, \$1.9 million to Dems in 2020 as of publishing)]
--   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+-   **Analysis summary**: I was able to confirm the finding for these numbers. I just did a simple filter for 2020 election, grouped by party and summarized the total amount for each of those parties. The most difficult part of this analysis was figuring out how to change the "amount" column from a character to a number. Me and my partners weren't sure how to do that, so we prompted ChatGPT with that question and it gave us the top part of the below code.
 
 ```{r}
 # Put code to reverse engineer sentence here
+clean_numeric <- function(x) {
+  as.numeric(gsub("[$,]", "", x))
+}
 
-clean_nuumeric <- function(x) [
-  as.numeric(gsub("[.$]", ""
-]
-
-sports_political_donations$amount <- clean_numeric(sports_political_donations$amunt)
-
+sports_political_donations$amount <- clean_numeric(sports_political_donations$amount)
 
 sports_political_donations |>
-  group_by(amount)
-  summarize(total_amount(n))
-  arrange(desc(amount))
+    filter(election_year == 2020) |>
+    group_by(party) |>
+    summarise(total = sum(amount))
 
 # Display results of code below this codeblock
-
 ```
 
 ### Sentence 2
