@@ -1,0 +1,123 @@
+---
+title: "Reverse Engineering Project"
+author: "Student names here"
+date: "Date here"
+output:
+  html_document:
+    theme: cerulean
+    highlight: pygments
+    toc: true
+    toc_float:
+      collapsed: true
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this notebook, we are reverse engineering the story, [STORY NAME](STORY%20URL)
+
+## Load libraries
+
+Loading required libraries for this analysis.
+
+```{r echo=FALSE, message=FALSE}
+
+```
+
+## Load and Cleaning Data
+
+In this section, describe the source of the data, write a basic data dictionary for data you are working with, and discuss any caveats or issues you discovered working with this data.
+
+```{r}
+# Load required data
+
+# Path to data should be loaded from folder "data" i.e. read_csv("data/name_of_data.csv")
+
+# Clean required data and prepare for analysis if needed.
+
+sports_political_donations <- read_csv("data/sports-political-donations.csv") |> clean_names()
+
+
+```
+
+## Sentences to Engineer
+
+In this notebook, we are reverse engineering five sentences from the story.
+
+### Sentence 1
+
+-   **Sentence text**: [Sports owners' contributions to federal elections since 2015: \$47 million (\$10m to republicans, \$1.9 million to Dems in 2020 as of publishing)]
+-   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+
+```{r}
+# Put code to reverse engineer sentence here
+
+clean_nuumeric <- function(x) [
+  as.numeric(gsub("[.$]", ""
+]
+
+sports_political_donations$amount <- clean_numeric(sports_political_donations$amunt)
+
+
+sports_political_donations |>
+  group_by(amount)
+  summarize(total_amount(n))
+  arrange(desc(amount))
+
+# Display results of code below this codeblock
+
+```
+
+### Sentence 2
+
+-   **Sentence text**: [Paste in sentence to engineer here]
+-   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+
+```{r}
+# Put code to reverse engineer sentence here
+
+# Display results of code below this codeblock
+
+```
+
+### Sentence 3
+
+-   **Sentence text**: [Paste in sentence to engineer here]
+-   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+
+```{r}
+# Put code to reverse engineer sentence here
+
+# Display results of code below this codeblock
+
+```
+
+### Sentence 4
+
+-   **Sentence text**: [Paste in sentence to engineer here]
+-   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+
+```{r}
+# Put code to reverse engineer sentence here
+
+# Display results of code below this codeblock
+
+```
+
+### Sentence 5
+
+-   **Sentence text**: [Paste in sentence to engineer here]
+-   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+
+```{r}
+# Put code to reverse engineer sentence here
+
+# Display results of code below this codeblock
+
+```
+
+-30-
