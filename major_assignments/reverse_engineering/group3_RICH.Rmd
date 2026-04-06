@@ -109,11 +109,12 @@ sports_political_donations |>
 
 ### Sentence 5
 
--   **Sentence text**: [Paste in sentence to engineer here]
+-   **Sentence text**: [More than 63 percent of the \$47 million in the database of nearly 3,000 contributions comes from just 108 donations split among these 40 owners --- and 79 percent of that money went to Republican causes.]
 -   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
 
 ```{r}
 # Put code to reverse engineer sentence here
+
 
 # Display results of code below this codeblock
 
