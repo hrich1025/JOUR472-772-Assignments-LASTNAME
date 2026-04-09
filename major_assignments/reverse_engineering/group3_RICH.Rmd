@@ -57,6 +57,8 @@ In this notebook, we are reverse engineering five sentences from the story.
 
 ```{r}
 # Put code to reverse engineer sentence here
+#sports_owners_donations$amount <- as.numeric(amount))
+
 clean_numeric <- function(x) {
   as.numeric(gsub("[$,]", "", x))
 }
@@ -67,6 +69,7 @@ sports_political_donations |>
     filter(election_year == 2020) |>
     group_by(party) |>
     summarise(total = sum(amount))
+
 
 # Display results of code below this codeblock
 ```
@@ -109,15 +112,23 @@ sports_political_donations |>
 
 ### Sentence 5
 
--   **Sentence text**: [More than 63 percent of the \$47 million in the database of nearly 3,000 contributions comes from just 108 donations split among these 40 owners --- and 79 percent of that money went to Republican causes.]
--   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?]
+-   **Sentence text**: [More than 63 percent of the $47 million in the database of nearly 3,000 contributions comes from just 108 donations split among these 40 owners --- and 79 percent of that money went to Republican causes.]
+-   **Analysis summary**: [Write up two to three sentences describing the results of your analysis. Were you able to confirm the finding? If not, why not?] We were able to confirm the findings that of the $47 million donated, just over 63 percent was concentrated among 108 donations. We also found that 79 percent of that total was donated to Republican causes.  
 
 ```{r}
 # Put code to reverse engineer sentence here
+top_108 <- sports_political_donations |>
+  arrange(desc(amount)) |>
+  slice_head(n = 108)
 
+sum(top_108$amount) / sum(sports_political_donations$amount)
+
+top_108 |>
+  filter(party == "Republican") |>
+  summarise(sum(amount)) / sum(top_108$amount)
 
 # Display results of code below this codeblock
-
+top_108
 ```
 
 -30-
